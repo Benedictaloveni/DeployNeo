@@ -532,7 +532,7 @@ th, tfoot {
 }
 
 /* Gaya umum untuk tombol */
-.action-btn {
+.action-btn.mulai, .action-btn.pelajari {
     font-size: 0.9em;
     padding: 8px 16px;
     display: inline-block; /* Membuat tombol menjadi fleksibel untuk penataan horizontal dan vertikal */
@@ -579,9 +579,6 @@ th, tfoot {
     margin-bottom: 5px; /* Jarak tambahan di bawah teks */
     color: #3d3d3d
 }
-
-
-
 
 #tentang .section-container {
     background-color: #ffffff;
@@ -692,9 +689,10 @@ button:hover {
         margin-top: 30px; /* Mengurangi margin atas */
     }
 
-    .action-btn {
+    .action-btn.mulai {
         font-size: 0.9em;
         padding: 8px 16px;
+        margin-left: -130px;
     }
 
     /* Menampilkan hamburger menu */
@@ -826,9 +824,10 @@ button:hover {
         margin-top: 20px; /* Mengurangi margin atas */
     }
 
-    .action-btn {
+    .action-btn.mulai {
         font-size: 0.8em;
         padding: 6px 12px;
+        margin-left: -300px;
     }
 
     /* Penyesuaian navigasi */
@@ -916,9 +915,10 @@ button:hover {
         margin-top: 15px; /* Mengurangi margin atas */
     }
 
-    .action-btn {
+    .action-btn.mulai {
         font-size: 0.7em;
         padding: 5px 10px;
+        margin-left: -500px;
     }
 
     .hamburger-menu {
