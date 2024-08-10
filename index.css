@@ -100,9 +100,11 @@ html, body {
     color: rgb(0, 0, 0);
     font-size: large;
     background: url("isaac.png") no-repeat center center fixed;
-    background-size: cover;
-    height: 80vh; /* Pastikan elemen memiliki tinggi yang cukup */
+    background-size: cover; /* Menjaga gambar menutupi seluruh elemen */
+    background-position: center center; /* Menjaga gambar tetap berada di tengah */
+    height: 80vh; /* Tinggi elemen untuk layar besar */
 }
+
 
 #input-section .section-container {
     background-color: #ffffff;
@@ -668,10 +670,19 @@ button:hover {
 
 /* Media Queries for Responsive Design */
 
-/* Media Queries for Responsive Design */
-
 /* Untuk layar dengan lebar maksimal 768px (Tablet dan ponsel kecil) */
 @media screen and (max-width: 768px) {
+
+    #home .section-container {
+        background-size: cover; /* Tetap menjaga gambar menutupi seluruh elemen */
+        background-position: center center; /* Gambar tetap di tengah */
+        height: 70vh; /* Menyesuaikan tinggi elemen */
+    }
+
+    #input-section .section-container {
+        height:900px;
+        padding-top: 0px;
+    }
 
     .content-h p, .content-h h1 {
         font-size: 1em; /* Menyesuaikan ukuran font */
@@ -679,7 +690,11 @@ button:hover {
         margin-left: 5vw; /* Menyesuaikan margin kiri */
         margin-bottom: 10px; /* Mengurangi margin bawah */
         margin-top: 30px; /* Mengurangi margin atas */
-        text-align: center; /* Menyelaraskan teks ke tengah */
+    }
+
+    .action-btn {
+        font-size: 0.9em;
+        padding: 8px 16px;
     }
 
     /* Menampilkan hamburger menu */
@@ -717,7 +732,7 @@ button:hover {
     /* Penyesuaian untuk bagian tentang */
     #tentang {
         padding: 0;
-        height: auto; /* Menyesuaikan tinggi otomatis */
+        height: auto;
     }
 
     .about-content {
@@ -774,15 +789,34 @@ button:hover {
     }
 
     /* Penyesuaian untuk peta */
-    .map-container {
-        width: 40%;
-        height: auto;
-        margin-left: 0; /* Geser peta ke kiri */
+    #map {
+        width: 200%;
+        height: 300px;
+        margin-left: -130px;
+        margin-right: 0;
+        margin-bottom: 40px;
     }
+
+    #calculation-description {
+        background-color: #3d3d3d; /* Warna latar belakang kontainer */
+        padding: 20px; /* Jarak di sekitar konten */
+        height: 1400px;
+}
 }
 
 /* Untuk layar dengan lebar maksimal 480px (Ponsel kecil) */
 @media screen and (max-width: 480px) {
+
+    #home .section-container {
+        background-size: cover; /* Tetap menjaga gambar menutupi seluruh elemen */
+        background-position: center center; /* Gambar tetap di tengah */
+        height: 90vh; /* Menyesuaikan tinggi elemen */
+    }
+
+    #input-section .section-container {
+        height:1000px;
+        padding-top: 0px;
+    }
 
     .content-h p, .content-h h1 {
         font-size: 0.8em; /* Menyesuaikan ukuran font lebih kecil */
@@ -790,7 +824,11 @@ button:hover {
         margin-left: 2vw; /* Menyesuaikan margin kiri */
         margin-bottom: 5px; /* Mengurangi margin bawah */
         margin-top: 20px; /* Mengurangi margin atas */
-        text-align: center; /* Menyelaraskan teks ke tengah */
+    }
+
+    .action-btn {
+        font-size: 0.8em;
+        padding: 6px 12px;
     }
 
     /* Penyesuaian navigasi */
@@ -836,15 +874,47 @@ button:hover {
     }
 
     /* Penyesuaian untuk peta */
-    .map-container {
-        width: 100%;
-        height: auto;
-        margin-left: 0; /* Geser peta ke kiri */
+    #map {
+        width: 90%; /* Menyesuaikan lebar peta untuk layar kecil */
+        height: 250px; /* Menyesuaikan tinggi peta */
+        margin-left: -50px; /* Menggeser peta ke kiri untuk layar kecil */
+        margin-right: 0;
+        margin-bottom: 30px; /* Menyesuaikan margin bawah */
     }
+
+    #calculation-description {
+        background-color: #3d3d3d; /* Warna latar belakang kontainer */
+        padding: 20px; /* Jarak di sekitar konten */
+        height: 1500px;
+}
 }
 
 /* Untuk layar dengan lebar maksimal 320px (Ponsel sangat kecil) */
 @media screen and (max-width: 320px) {
+    #home .section-container {
+        background-size: cover; /* Tetap menjaga gambar menutupi seluruh elemen */
+        background-position: center center; /* Gambar tetap di tengah */
+        height: 100vh; /* Menyesuaikan tinggi elemen */
+    }
+
+    #input-section .section-container {
+        height:1100px;
+        padding-top: 0px;
+    }
+
+    .content-h p, .content-h h1 {
+        font-size: 0.7em; /* Menyesuaikan ukuran font lebih kecil */
+        margin-right: 1vw; /* Menyesuaikan margin kanan */
+        margin-left: 1vw; /* Menyesuaikan margin kiri */
+        margin-bottom: 3px; /* Mengurangi margin bawah */
+        margin-top: 15px; /* Mengurangi margin atas */
+    }
+
+    .action-btn {
+        font-size: 0.7em;
+        padding: 5px 10px;
+    }
+
     .hamburger-menu {
         width: 24px;
         height: 2px;
@@ -867,9 +937,17 @@ button:hover {
     }
 
     /* Penyesuaian untuk peta */
-    .map-container {
-        width: 80%;
-        height: auto;
-        margin-left: 0; /* Geser peta ke kiri */
+    #map {
+        width: 70%; /* Mengatur lebar peta agar sesuai dengan lebar layar */
+        height: 200px; /* Menyesuaikan tinggi peta */
+        margin-left: 0; /* Menghapus margin kiri untuk layar sangat kecil */
+        margin-right: 0;
+        margin-bottom: 20px; /* Menyesuaikan margin bawah */
+    }
+
+    #calculation-description {
+        background-color: #3d3d3d; /* Warna latar belakang kontainer */
+        padding: 20px; /* Jarak di sekitar konten */
+        height: 1600px;
     }
 }
