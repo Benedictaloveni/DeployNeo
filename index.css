@@ -810,7 +810,7 @@ button:hover {
     #home .section-container {
         background-size: cover; /* Tetap menjaga gambar menutupi seluruh elemen */
         background-position: center center; /* Gambar tetap di tengah */
-        height: 70vh; /* Menyesuaikan tinggi elemen */
+        height: 50vh; /* Menyesuaikan tinggi elemen */
     }
 
     #input-section .section-container {
@@ -876,7 +876,7 @@ button:hover {
     /* Penyesuaian untuk peta */
     #map {
         width: 100%; /* Menyesuaikan lebar peta untuk layar kecil */
-        height: 250px; /* Menyesuaikan tinggi peta */
+        height: 300px; /* Menyesuaikan tinggi peta */
         margin-left: -50px; /* Menggeser peta ke kiri untuk layar kecil */
         margin-right: 0;
         margin-bottom: 30px; /* Menyesuaikan margin bawah */
@@ -900,7 +900,7 @@ button:hover {
     #home .section-container {
         background-size: cover; /* Tetap menjaga gambar menutupi seluruh elemen */
         background-position: center center; /* Gambar tetap di tengah */
-        height: 50vh; /* Menyesuaikan tinggi elemen */
+        height: 30vh; /* Menyesuaikan tinggi elemen */
     }
 
     #input-section .section-container {
@@ -945,7 +945,7 @@ button:hover {
     /* Penyesuaian untuk peta */
     #map {
         width: 80%; /* Mengatur lebar peta agar sesuai dengan lebar layar */
-        height: 200px; /* Menyesuaikan tinggi peta */
+        height: 350px; /* Menyesuaikan tinggi peta */
         margin-left: 0; /* Menghapus margin kiri untuk layar sangat kecil */
         margin-right: 0;
         margin-bottom: 20px; /* Menyesuaikan margin bawah */
