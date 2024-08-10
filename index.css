@@ -39,7 +39,7 @@ html, body {
 .hamburger-menu .bar3 {
     width: 30px;
     height: 2px;
-    background-color: #000;
+    background-color: #ffffff;
     margin: 6px 0;
     transition: 0.4s;
 }
@@ -107,7 +107,15 @@ html, body {
 #input-section .section-container {
     background-color: #ffffff;
     color: #3d3d3d;
-    height:800px;
+    height:700px;
+    padding-top: 0px;
+}
+
+#proyeksi .section-container {
+    background-color: #ffffff;
+    color: #3d3d3d;
+    height:700px;
+    padding-top: 30px;
 }
 
 #input-section h2 {
@@ -127,6 +135,15 @@ html, body {
     box-sizing: border-box; /* Menghitung padding dan border dalam lebar total */
 }
 
+/* Gaya untuk teks tutorial */
+.tutorial-text {
+    font-size: 11px; /* Ukuran font kecil */
+    color: #666; /* Warna teks abu-abu */
+    margin-bottom: 20px; /* Jarak antara teks dan judul */
+    text-align: left; /* Rata kiri */
+    margin-left: 80px; /* Jarak dari tepi kiri container */
+}
+
 
 .features-list {
     list-style-type: none;
@@ -142,9 +159,9 @@ html, body {
 
 #pertumbuhan .section-container {
     background-color: #ffffff;
-    top: 20px;
+    top: 70px;
     height: auto;
-    padding-bottom: 50px;
+    padding-bottom: 90px;
 }
 
 #pertumbuhan p,
@@ -152,19 +169,51 @@ html, body {
     color: #3d3d3d;
 }
 
+
+/* Container untuk chart */
+#pertumbuhan .chart-container {
+    position: relative;
+    margin-top: 60px; /* Spasi antara tabel dan grafik */
+    background-color: #fff; /* Latar belakang putih untuk container */
+    border: 1px solid #3d3d3d; /* Border untuk container (opsional) */
+    border-radius: 8px; /* Sudut melengkung (opsional) */
+    width: 90%; /* Atur lebar kontainer sesuai kebutuhan */
+    margin: 0 auto; /* Pusatkan container di tengah halaman */
+}
+
+/* Judul di atas grafik */
+#pertumbuhan .chart-container h3 {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 30px; /* Spasi antara judul dan grafik */
+    color: #3d3d3d;
+}
+
+/* Canvas untuk chart */
+#economic-growth-chart {
+    width: 100%; /* Atur lebar grafik menjadi 100% dari kontainer */
+    height: 100px; /* Atur tinggi grafik sesuai kebutuhan */
+    background-color: #fff; /* Latar belakang putih untuk canvas (opsional) */
+}
+
+#economic-growth-table {
+    margin-bottom: 70px;
+}
+
 #production-input-section .section-container {
     background-color: #ffffff;
-    padding: 40px;
+    padding: 70px;
     height: auto;
 }
 
 #production-input-section p,
 #production-input-section h2 {
     color: #3d3d3d;
+    padding-top: 40px;
 }
 
 #hasil-pembobotan .section-container {
-    padding-top: 50px;
+    padding-top: 80px;
     padding-bottom: 30px;
 }
 
@@ -179,9 +228,10 @@ html, body {
 }
 
 #production-projection .section-container {
-    padding-top: 80px;
-    padding-bottom: 30px;
+    padding-top: 50px;
+    padding-bottom: 10px;
 }
+
 
 /* Gaya Umum untuk Semua Tabel */
 table {
@@ -224,7 +274,8 @@ th, tfoot {
 #calculation-description {
     background-color: #3d3d3d; /* Warna latar belakang kontainer */
     padding: 20px; /* Jarak di sekitar konten */
-    margin: 20px 0; /* Jarak atas dan bawah kontainer */
+    height: 1300px;
+   
 }
 
 .calculation-details {
@@ -246,7 +297,6 @@ th, tfoot {
     font-size: 16px; /* Ukuran font deskripsi */
     line-height: 1.6; /* Jarak antar baris */
     color: #3d3d3d; /* Warna teks deskripsi */
-    margin-bottom: 10px; /* Jarak bawah deskripsi */
     text-align: justify;
 }
 
@@ -287,6 +337,14 @@ th, tfoot {
     box-sizing: border-box;
     padding: 20px;
     margin-top: -20px;
+}
+
+#input-section .calculator-container, #input-section .chart-container {
+    background-color: #3d3d3d;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 20px;
+    margin-bottom: 50px;
 }
 
 .calculator-container {
@@ -338,12 +396,12 @@ th, tfoot {
 
 #kontak .section-container {
     background-color: #3d3d3d;
-    padding: 0;
+    padding: 10px;
 }
 
 #kontak h2 {
     color: #ffffff;
-    padding-top: 40px; /* Sesuaikan nilai ini dengan kebutuhan */
+    padding-top: 70px; /* Sesuaikan nilai ini dengan kebutuhan */
 }
 
 
@@ -466,18 +524,24 @@ th, tfoot {
     margin-left: 65vh;
 }
 
+/* Atur lebar kolom secara spesifik untuk Nama Sektor */
+.sektor-column {
+    width: 20%; /* Lebar 40% dari tabel, bisa disesuaikan */
+}
 
 /* Gaya umum untuk tombol */
 .action-btn {
-    background-color: #444;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    margin: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s, transform 0.3s; /* Transisi warna dan efek transform saat hover */
+    font-size: 0.9em;
+    padding: 8px 16px;
+    display: inline-block; /* Membuat tombol menjadi fleksibel untuk penataan horizontal dan vertikal */
+    align-items: center; /* Mengatur konten tombol agar terpusat secara vertikal */
+    justify-content: center; /* Mengatur konten tombol agar terpusat secara horizontal */
+    text-align: center; /* Mengatur teks di dalam tombol agar terpusat */
+    border: 1px solid #3d3d3d; /* Contoh border untuk melihat batas tombol */
+    border-radius: 4px; /* Menambahkan radius untuk sudut tombol */
+    background-color: #3d3d3d; /* Warna latar belakang tombol */
+    color: #ffffff; /* Warna teks tombol */
+    text-decoration: none; /* Menghapus garis bawah dari teks jika tombol adalah link */
 }
 
 /* Gaya saat hover untuk tombol Mulai */
@@ -515,10 +579,12 @@ th, tfoot {
 }
 
 
+
+
 #tentang .section-container {
     background-color: #ffffff;
     padding: 60px;
-    height: auto; /* Sesuaikan tinggi dengan konten */
+    position: relative; /* Agar elemen yang terhubung dengan kontainer seperti controls tetap pada posisinya */
 }
 
 #tentang p {
@@ -528,7 +594,7 @@ th, tfoot {
 .about-content {
     display: flex;
     align-items: flex-start;
-    gap: 30px;
+    justify-content: space-between; /* Menyebar elemen dengan jarak yang sama */
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
@@ -536,17 +602,17 @@ th, tfoot {
 
 .about-image {
     width: 500px;
-    position: relative; /* Pastikan posisi relative */
+    position: relative;
 }
 
 .about-right {
     max-width: 600px;
-    padding-left: 50px;
+    padding-left: 30px; /* Padding kiri untuk jarak dari peta */
 }
 
 .about-right h2 {
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 10px; /* Tambahkan jarak bawah */
 }
 
 .about-right p {
@@ -557,7 +623,7 @@ th, tfoot {
 
 #map {
     height: 300px;
-    width: 100%;
+    width: 200%;
     border: 2px solid #3d3d33;
     margin-top: 20px;
     border-radius: 8px;
@@ -599,10 +665,23 @@ button:hover {
     color: #000000;
 }
 
+
+/* Media Queries for Responsive Design */
+
 /* Media Queries for Responsive Design */
 
 /* Untuk layar dengan lebar maksimal 768px (Tablet dan ponsel kecil) */
 @media screen and (max-width: 768px) {
+
+    .content-h p, .content-h h1 {
+        font-size: 1em; /* Menyesuaikan ukuran font */
+        margin-right: 5vw; /* Menyesuaikan margin kanan */
+        margin-left: 5vw; /* Menyesuaikan margin kiri */
+        margin-bottom: 10px; /* Mengurangi margin bawah */
+        margin-top: 30px; /* Mengurangi margin atas */
+        text-align: center; /* Menyelaraskan teks ke tengah */
+    }
+
     /* Menampilkan hamburger menu */
     .hamburger-menu {
         display: block;
@@ -635,16 +714,10 @@ button:hover {
         padding: 10px;
     }
 
-    /* Sesuaikan gambar latar belakang */
-    #home .section-container {
-        background-position: center top;
-        background-size: cover;
-    }
-
     /* Penyesuaian untuk bagian tentang */
     #tentang {
         padding: 0;
-        height: 600px;
+        height: auto; /* Menyesuaikan tinggi otomatis */
     }
 
     .about-content {
@@ -657,7 +730,7 @@ button:hover {
         height: auto;
     }
 
-    .about-text {
+    .about-right {
         padding-left: 0;
         text-align: center;
     }
@@ -670,12 +743,6 @@ button:hover {
 
     th, td {
         padding: 8px;
-    }
-
-    /* Penyesuaian untuk tombol */
-    .action-btn {
-        font-size: 0.9em;
-        padding: 8px 16px;
     }
 
     /* Penyesuaian untuk konten grafik dan kalkulator */
@@ -705,18 +772,30 @@ button:hover {
         font-size: 0.7em;
         padding: 1vh 0;
     }
+
+    /* Penyesuaian untuk peta */
+    .map-container {
+        width: 40%;
+        height: auto;
+        margin-left: 0; /* Geser peta ke kiri */
+    }
 }
 
 /* Untuk layar dengan lebar maksimal 480px (Ponsel kecil) */
 @media screen and (max-width: 480px) {
+
+    .content-h p, .content-h h1 {
+        font-size: 0.8em; /* Menyesuaikan ukuran font lebih kecil */
+        margin-right: 2vw; /* Menyesuaikan margin kanan */
+        margin-left: 2vw; /* Menyesuaikan margin kiri */
+        margin-bottom: 5px; /* Mengurangi margin bawah */
+        margin-top: 20px; /* Mengurangi margin atas */
+        text-align: center; /* Menyelaraskan teks ke tengah */
+    }
+
     /* Penyesuaian navigasi */
     .nav-container li a {
         padding: 15px;
-    }
-
-    /* Penyesuaian gambar latar belakang */
-    #home .section-container {
-        background-attachment: scroll; /* Menghindari gambar latar belakang tetap */
     }
 
     /* Penyesuaian untuk bagian tentang */
@@ -739,12 +818,6 @@ button:hover {
         padding: 6px;
     }
 
-    /* Penyesuaian untuk tombol */
-    .action-btn {
-        font-size: 0.8em;
-        padding: 6px 12px;
-    }
-
     /* Penyesuaian untuk grafik dan kalkulator */
     .calculator-container, .chart-container {
         padding: 15px;
@@ -761,7 +834,15 @@ button:hover {
         font-size: 0.6em;
         padding: 0.5vh 0;
     }
+
+    /* Penyesuaian untuk peta */
+    .map-container {
+        width: 100%;
+        height: auto;
+        margin-left: 0; /* Geser peta ke kiri */
+    }
 }
+
 /* Untuk layar dengan lebar maksimal 320px (Ponsel sangat kecil) */
 @media screen and (max-width: 320px) {
     .hamburger-menu {
@@ -783,5 +864,12 @@ button:hover {
     .footer {
         font-size: 0.5em;
         padding: 0.3vh 0;
+    }
+
+    /* Penyesuaian untuk peta */
+    .map-container {
+        width: 80%;
+        height: auto;
+        margin-left: 0; /* Geser peta ke kiri */
     }
 }

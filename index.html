@@ -9,6 +9,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-search/dist/leaflet-search.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+
     <title>Website Prediksi Pertumbuhan Ekonomi</title>
 </head>
 <body>
@@ -129,9 +131,63 @@
     </section>
     
     
+    <section id="production-input-section">
+        <div class="section-container">
+            <h2>Produksi per Tahun</h2>
+            <section class="flex-container">
+                <!-- Kalkulator -->
+                <div class="calculator-container">
+                    <form id="production-form">
+                        <div class="form-group">
+                            <label for="initial-amount">Jumlah Awal (Ton):</label>
+                            <input type="number" id="initial-amount-production" >
+                        </div>
+                        <div class="form-group">
+                            <label for="remaining-amount">Sisa Setelah Tahun (Ton):</label>
+                            <input type="number" id="remaining-amount-production" >
+                        </div>
+                        <div class="form-group">
+                            <label for="time-period">Waktu (Tahun):</label>
+                            <input type="number" id="time-period-production">
+                        </div>
+                        <button type="button" class="calculate-button" onclick="calculateProduction()">Hitung Proyeksi</button>
+                    </form>
+                </div>
+            
+                <!-- Grafik -->
+                <div class="chart-container">
+                    <canvas id="production-chart"></canvas> <!-- Elemen canvas untuk Chart.js -->
+                </div>
+            </section>
+            
+            <section id="production-projection">
+                <div class="section-container">
+                    <h2>Proyeksi Produksi</h2>
+                    <table id="production-projection-table">
+                        <thead>
+                            <tr>
+                                <th>Tahun</th>
+                                <th>Jumlah Produksi (Ton)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="production-projected-data">
+                            <!-- Rows will be dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </section>
+
     <section id="input-section">
         <div class="section-container">
             <h2>Kalkulator Pertumbuhan Ekonomi</h2>
+
+             <!-- Tutorial atau Instruksi di atas kalkulator -->
+        <p class="tutorial-text">
+            *Masukkan sektor yang ingin dihitung beserta jumlah PDRB per tahunnya untuk sektor tersebut.*
+        </p>
+
             <section class="flex-container">
                 <!-- Kalkulator -->
                 <div class="calculator-container">
@@ -139,7 +195,7 @@
                         <div id="sector-fields">
                             <!-- Kontainer untuk nama sektor -->
                             <div class="form-group">
-                                <label for="sector-name">Nama Sektor:</label>
+                                <th class="sektor-column">Nama Sektor</th>
                                 <input type="text" id="sector-name" placeholder="Nama Sektor">
                             </div>
                         </div>
@@ -163,7 +219,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Sektor</th>
+                                <th class="sektor-column">Nama Sektor</th>
                                 <th>2024</th>
                                 <th>2025</th>
                                 <th>2026</th>
@@ -188,11 +244,17 @@
     <section id="pertumbuhan">
         <div class="section-container">
             <h2>Pertumbuhan Ekonomi</h2>
+
+            <!-- Tutorial atau Instruksi di atas kalkulator -->
+        <p class="tutorial-text">
+            *Masukkan sektor  beserta jumlah PDRB asli maupun hasil proyeksi per tahunnya untuk sektor tersebut.*
+        </p>
+
             <table id="economic-growth-table">
                 <thead>
                     <tr>
                         <th rowspan="2">No</th>
-                        <th rowspan="2">Nama Sektor</th>
+                        <th rowspan="2" class="sektor-column">Nama Sektor</th>
                         <th colspan="2"><div contenteditable="true">2013</div></th>
                         <th colspan="2"><div contenteditable="true">2018</div></th>
                         <th colspan="2"><div contenteditable="true">2023</div></th>
@@ -218,7 +280,7 @@
                 <tbody>
                     <tr>
                         <td contenteditable="true">1</td>
-                        <td contenteditable="true"></td>
+                        <td contenteditable="true" style="text-align: left;"></td>
                         <td contenteditable="true" class="rupiah" data-year="2013"></td>
                         <td class="percent" data-year="2013"></td>
                         <td contenteditable="true" class="rupiah" data-year="2018"></td>
@@ -234,7 +296,7 @@
                     </tr>
                     <tr>
                         <td contenteditable="true">2</td>
-                        <td contenteditable="true"></td>
+                        <td contenteditable="true" style="text-align: left;"></td>
                         <td contenteditable="true" class="rupiah" data-year="2013"></td>
                         <td class="percent" data-year="2013"></td>
                         <td contenteditable="true" class="rupiah" data-year="2018"></td>
@@ -250,7 +312,7 @@
                     </tr>
                     <tr>
                         <td contenteditable="true">3</td>
-                        <td contenteditable="true"></td>
+                        <td contenteditable="true" style="text-align: left;"></td>
                         <td contenteditable="true" class="rupiah" data-year="2013"></td>
                         <td class="percent" data-year="2013"></td>
                         <td contenteditable="true" class="rupiah" data-year="2018"></td>
@@ -266,7 +328,7 @@
                     </tr>
                     <tr>
                         <td contenteditable="true">4</td>
-                        <td contenteditable="true"></td>
+                        <td contenteditable="true" style="text-align: left;"></td>
                         <td contenteditable="true" class="rupiah" data-year="2013"></td>
                         <td class="percent" data-year="2013"></td>
                         <td contenteditable="true" class="rupiah" data-year="2018"></td>
@@ -282,7 +344,7 @@
                     </tr>
                     <tr>
                         <td contenteditable="true">5</td>
-                        <td contenteditable="true"></td>
+                        <td contenteditable="true" style="text-align: left;"></td>
                         <td contenteditable="true" class="rupiah" data-year="2013"></td>
                         <td class="percent" data-year="2013"></td>
                         <td contenteditable="true" class="rupiah" data-year="2018"></td>
@@ -316,17 +378,27 @@
                     </tr>
                 </tfoot>
             </table>
+            <div class="chart-container">
+                <h3>PDRB Tahun 2013 - 2033</h3>
+                <canvas id="economic-growth-chart"></canvas>
+            </div>
         </div>
     </section>
     
     <section id="hasil-pembobotan">
         <div class="section-container">
             <h2>Hasil Pembobotan</h2>
+
+              <!-- Tutorial atau Instruksi di atas kalkulator -->
+        <p class="tutorial-text">
+            *Perhitungan dilakukkan dengan menggunakan rumus pembobotan untuk r yaitu (PDRBX/PDRBY)*
+        </p>
+
             <table id="weighting-results-table">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Sektor</th>
+                        <th class="sektor-column">Nama Sektor</th>
                         <th contenteditable="true">2025</th>
                         <th contenteditable="true">2028</th>
                         <th contenteditable="true">2033</th>
@@ -335,35 +407,35 @@
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td contenteditable="true"></td>
+                        <td contenteditable="true" style="text-align: left;"></td>
                         <td contenteditable="true" oninput="calculate(this)"></td>
                         <td contenteditable="true" oninput="calculate(this)"></td>
                         <td contenteditable="true" oninput="calculate(this)"></td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td contenteditable="true"></td>
+                        <td contenteditable="true" style="text-align: left;"></td>
                         <td contenteditable="true" oninput="calculate(this)"></td>
                         <td contenteditable="true" oninput="calculate(this)"></td>
                         <td contenteditable="true" oninput="calculate(this)"></td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td contenteditable="true"></td>
+                        <td contenteditable="true" style="text-align: left;"></td>
                         <td contenteditable="true" oninput="calculate(this)"></td>
                         <td contenteditable="true" oninput="calculate(this)"></td>
                         <td contenteditable="true" oninput="calculate(this)"></td>
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td contenteditable="true"></td>
+                        <td contenteditable="true" style="text-align: left;"></td>
                         <td contenteditable="true" oninput="calculate(this)"></td>
                         <td contenteditable="true" oninput="calculate(this)"></td>
                         <td contenteditable="true" oninput="calculate(this)"></td>
                     </tr>
                     <tr>
                         <td>5</td>
-                        <td contenteditable="true"></td>
+                        <td contenteditable="true" style="text-align: left;"></td>
                         <td contenteditable="true" oninput="calculate(this)"></td>
                         <td contenteditable="true" oninput="calculate(this)"></td>
                         <td contenteditable="true" oninput="calculate(this)"></td>
@@ -376,11 +448,17 @@
     <section id="tarikan-ekonomi">
         <div class="section-container">
             <h2>Tarikan Ekonomi</h2>
+
+               <!-- Tutorial atau Instruksi di atas kalkulator -->
+        <p class="tutorial-text">
+            *Perhitungan dilakukkan dengan menggunakan rumus pemodelan Gravitasi yaitu (M1*M2/r²)*
+        </p>
+
             <table id="economic-pull-table">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Sektor</th>
+                        <th class="sektor-column">Nama Sektor</th>
                         <th contenteditable="true">2025</th>
                         <th contenteditable="true">2028</th>
                         <th contenteditable="true">2033</th>
@@ -389,35 +467,35 @@
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td contenteditable="true"></td>
+                        <td contenteditable="true" style="text-align: left;"></td>
                         <td contenteditable="true" onkeydown="calculate(event)"></td>
                         <td contenteditable="true" onkeydown="calculate(event)"></td>
                         <td contenteditable="true" onkeydown="calculate(event)"></td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td contenteditable="true"></td>
+                        <td contenteditable="true" style="text-align: left;"></td>
                         <td contenteditable="true" onkeydown="calculate(event)"></td>
                         <td contenteditable="true" onkeydown="calculate(event)"></td>
                         <td contenteditable="true" onkeydown="calculate(event)"></td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td contenteditable="true"></td>
+                        <td contenteditable="true" style="text-align: left;"></td>
                         <td contenteditable="true" onkeydown="calculate(event)"></td>
                         <td contenteditable="true" onkeydown="calculate(event)"></td>
                         <td contenteditable="true" onkeydown="calculate(event)"></td>
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td contenteditable="true"></td>
+                        <td contenteditable="true" style="text-align: left;"></td>
                         <td contenteditable="true" onkeydown="calculate(event)"></td>
                         <td contenteditable="true" onkeydown="calculate(event)"></td>
                         <td contenteditable="true" onkeydown="calculate(event)"></td>
                     </tr>
                     <tr>
                         <td>5</td>
-                        <td contenteditable="true"></td>
+                        <td contenteditable="true" style="text-align: left;"></td>
                         <td contenteditable="true" onkeydown="calculate(event)"></td>
                         <td contenteditable="true" onkeydown="calculate(event)"></td>
                         <td contenteditable="true" onkeydown="calculate(event)"></td>
@@ -430,11 +508,16 @@
     <section id="peningkatan-tarikan-ekonomi">
         <div class="section-container">
             <h2>Peningkatan Tarikan Ekonomi</h2>
+
+             <!-- Tutorial atau Instruksi di atas kalkulator -->
+        <p class="tutorial-text">
+            *Perhitungan dilakukkan dengan menggunakan rumus tarikan ekonomi yaitu (F(t) - F(t-1)/ F(t))*
+        </p>
             <table id="economic-increase-table">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Sektor</th>
+                        <th class="sektor-column">Nama Sektor</th>
                         <th contenteditable="true">2025</th>
                         <th contenteditable="true">2028</th>
                         <th contenteditable="true">2033</th>
@@ -444,87 +527,39 @@
                     <!-- Add rows as needed -->
                     <tr>
                         <td>1</td>
-                        <td contenteditable="true"></td>
+                        <td contenteditable="true" style="text-align: left;"></td>
                         <td contenteditable="true" oninput="calculatePercentage(this)"></td>
                         <td contenteditable="true" oninput="calculatePercentage(this)"></td>
                         <td contenteditable="true" oninput="calculatePercentage(this)"></td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td contenteditable="true"></td>
+                        <td contenteditable="true" style="text-align: left;"></td>
                         <td contenteditable="true" oninput="calculatePercentage(this)"></td>
                         <td contenteditable="true" oninput="calculatePercentage(this)"></td>
                         <td contenteditable="true" oninput="calculatePercentage(this)"></td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td contenteditable="true"></td>
+                        <td contenteditable="true" style="text-align: left;"></td>
                         <td contenteditable="true" oninput="calculatePercentage(this)"></td>
                         <td contenteditable="true" oninput="calculatePercentage(this)"></td>
                         <td contenteditable="true" oninput="calculatePercentage(this)"></td>
                     </tr> <tr>
                         <td>4</td>
-                        <td contenteditable="true"></td>
+                        <td contenteditable="true" style="text-align: left;"></td>
                         <td contenteditable="true" oninput="calculatePercentage(this)"></td>
                         <td contenteditable="true" oninput="calculatePercentage(this)"></td>
                         <td contenteditable="true" oninput="calculatePercentage(this)"></td>
                     </tr> <tr>
                         <td>5</td>
-                        <td contenteditable="true"></td>
+                        <td contenteditable="true" style="text-align: left;"></td>
                         <td contenteditable="true" oninput="calculatePercentage(this)"></td>
                         <td contenteditable="true" oninput="calculatePercentage(this)"></td>
                         <td contenteditable="true" oninput="calculatePercentage(this)"></td>
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </section>
-
-    <section id="production-input-section">
-        <div class="section-container">
-            <h2>Produksi per Tahun</h2>
-            <section class="flex-container">
-                <!-- Kalkulator -->
-                <div class="calculator-container">
-                    <form id="production-form">
-                        <div class="form-group">
-                            <label for="initial-amount">Jumlah Awal (Ton):</label>
-                            <input type="number" id="initial-amount-production" >
-                        </div>
-                        <div class="form-group">
-                            <label for="remaining-amount">Sisa Setelah Tahun (Ton):</label>
-                            <input type="number" id="remaining-amount-production" >
-                        </div>
-                        <div class="form-group">
-                            <label for="time-period">Waktu (Tahun):</label>
-                            <input type="number" id="time-period-production">
-                        </div>
-                        <button type="button" class="calculate-button" onclick="calculateProduction()">Calculate & Plot</button>
-                    </form>
-                </div>
-            
-                <!-- Grafik -->
-                <div class="chart-container">
-                    <canvas id="production-chart"></canvas> <!-- Elemen canvas untuk Chart.js -->
-                </div>
-            </section>
-            
-            <section id="production-projection">
-                <div class="section-container">
-                    <h2>Proyeksi Produksi</h2>
-                    <table id="production-projection-table">
-                        <thead>
-                            <tr>
-                                <th>Tahun</th>
-                                <th>Jumlah Produksi (tons)</th>
-                            </tr>
-                        </thead>
-                        <tbody id="production-projected-data">
-                            <!-- Rows will be dynamically populated -->
-                        </tbody>
-                    </table>
-                </div>
-            </section>
         </div>
     </section>
     

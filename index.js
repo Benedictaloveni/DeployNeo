@@ -205,6 +205,7 @@ function displayProjectedData(predictedYears, predictedRevenues) {
 
     cell = document.createElement('td');
     cell.textContent = sectorName; // Nama sektor
+    cell.style.textAlign = 'left'; // Rata kiri
     row.appendChild(cell);
 
     // Data prediksi
@@ -440,6 +441,8 @@ document.querySelectorAll('#economic-increase-table tbody td[contenteditable="tr
     });
 });
 
+let chartInstance = null; // Global variable to hold Chart.js instance
+
 function calculateProduction() {
     const initialAmount = parseFloat(document.getElementById('initial-amount-production').value);
     const remainingAmount = parseFloat(document.getElementById('remaining-amount-production').value);
@@ -454,23 +457,28 @@ function calculateProduction() {
     const lambda = -Math.log(remainingAmount / initialAmount) / timePeriod;
 
     // Calculate remaining amounts and reverse graph data
-    const t_values = Array.from({ length: (timePeriod * 10) + 1 }, (_, i) => i * 0.1);
+    const t_values = Array.from({ length: timePeriod + 1 }, (_, i) => i);
     const N_values = t_values.map(t => initialAmount * Math.exp(-lambda * t));
     const N_reverse = N_values.map(N => initialAmount - N);
 
-    // Plotting using Chart.js
+    // Update Chart.js
     const ctx = document.getElementById('production-chart').getContext('2d');
-    new Chart(ctx, {
+
+    if (chartInstance) {
+        chartInstance.destroy(); // Destroy old chart instance if exists
+    }
+
+    chartInstance = new Chart(ctx, {
         type: 'line',
         data: {
             labels: t_values,
             datasets: [{
-                label: 'Produced Metal (tons)',
+                label: 'Jumlah Produksi (Ton)',
                 data: N_reverse,
-                borderColor: 'blue', // Warna garis grafik
-                backgroundColor: 'rgb(0, 0, 255, 0.1)', // Latar belakang area grafik
+                borderColor: 'blue',
+                backgroundColor: 'rgb(0, 0, 255, 0.1)',
                 fill: true,
-                borderWidth: 2 // Lebar garis grafik
+                borderWidth: 2
             }]
         },
         options: {
@@ -479,67 +487,68 @@ function calculateProduction() {
                 legend: {
                     display: true,
                     labels: {
-                        color: 'white' // Warna teks label legenda
+                        color: 'white'
                     }
                 },
                 tooltip: {
                     callbacks: {
                         label: function(tooltipItem) {
-                            return `Amount: ${tooltipItem.raw.toFixed(2)}`;
+                            return `Amount: ${tooltipItem.raw.toFixed(2)} tons`;
                         }
                     },
-                    backgroundColor: 'white', // Latar belakang tooltip
-                    titleColor: 'grey', // Warna judul tooltip
-                    bodyColor: 'grey', // Warna teks tubuh tooltip
-                    borderColor: 'grey', // Warna border tooltip
+                    backgroundColor: 'white',
+                    titleColor: 'grey',
+                    bodyColor: 'grey',
+                    borderColor: 'grey',
                     borderWidth: 1
                 }
             },
             scales: {
                 x: {
                     ticks: {
-                        color: 'white' // Warna teks pada sumbu x
+                        color: 'white'
                     },
                     grid: {
-                        color: 'rgb(255, 255, 255, 0.1)' // Warna garis grid x
+                        color: 'rgb(255, 255, 255, 0.1)'
                     },
                     title: {
                         display: true,
-                        text: 'Years',
-                        color: 'white' // Warna teks judul sumbu x
+                        text: 'Tahun',
+                        color: 'white'
                     }
                 },
                 y: {
                     ticks: {
-                        color: 'white' // Warna teks pada sumbu y
+                        color: 'white'
                     },
                     grid: {
-                        color: 'rgb(255, 255, 255, 0.1)' // Warna garis grid y
+                        color: 'rgb(255, 255, 255, 0.1)'
                     },
                     title: {
                         display: true,
-                        text: 'Amount of Rare Earth Elements Produced (tons)',
-                        color: 'white' // Warna teks judul sumbu y
+                        text: 'Jumlah Produksi (Ton)',
+                        color: 'white'
                     }
                 }
             }
         }
     });
-    
 
     // Populate the projection table
     const tableBody = document.getElementById('production-projected-data');
     tableBody.innerHTML = '';
     for (let i = 0; i < t_values.length; i++) {
-        if (i % 10 === 0) { // Show data for each whole year
-            const year = (i / 10);
-            const row = `<tr>
-                <td>${year}</td>
-                <td>${N_reverse[i].toFixed(2)}</td>
-            </tr>`;
-            tableBody.insertAdjacentHTML('beforeend', row);
-        }
+        const year = i;
+        const row = `<tr>
+            <td>${year}</td>
+            <td>${N_values[i].toFixed(2)}</td>
+        </tr>`;
+        tableBody.insertAdjacentHTML('beforeend', row);
     }
+
+    // Save data to localStorage after calculation
+    saveProductionData();
+}
 
 // Function to save production input data to localStorage
 function saveProductionData() {
@@ -552,10 +561,6 @@ function saveProductionData() {
     localStorage.setItem('timePeriod', timePeriod);
 }
 
-// Save data to localStorage after calculation
-saveProductionData();
-}
-
 // Function to load production input data from localStorage
 function loadProductionData() {
     const initialAmount = localStorage.getItem('initialAmount');
@@ -566,6 +571,7 @@ function loadProductionData() {
     if (remainingAmount) document.getElementById('remaining-amount-production').value = remainingAmount;
     if (timePeriod) document.getElementById('time-period-production').value = timePeriod;
 }
+
 
 // Toggle menu state
 function toggleMenu() {
@@ -944,3 +950,138 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 L.marker([lat, lng], { icon: houseIcon }).addTo(map);
             }
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('economic-growth-chart').getContext('2d');
+            let chart;
+        
+            function generateEconomicGrowthChart() {
+                const sectors = []; // Nama sektor untuk label di grafik
+                const years = ['2013', '2018', '2023', '2025', '2028', '2033']; // Tahun untuk sumbu X
+                const dataBySector = {}; // Data berdasarkan sektor
+        
+                // Inisialisasi dataBySector untuk setiap sektor
+                years.forEach(year => {
+                    dataBySector[year] = [];
+                });
+        
+                const tableRows = document.querySelectorAll('#economic-growth-table tbody tr');
+        
+                tableRows.forEach(row => {
+                    const sectorName = row.cells[1].textContent.trim();
+                    sectors.push(sectorName);
+        
+                    years.forEach(year => {
+                        if (!dataBySector[year]) {
+                            dataBySector[year] = [];
+                        }
+                        dataBySector[year].push(parseFloat(row.querySelector(`[data-year="${year}"]`).textContent.trim()) || 0);
+                    });
+                });
+        
+                // Hitung total PDRB untuk setiap tahun
+                const totalPDRB = years.map(year => {
+                    return sectors.reduce((total, sector, index) => {
+                        return total + (dataBySector[year][index] || 0);
+                    }, 0);
+                });
+        
+                if (chart) {
+                    chart.destroy();
+                }
+        
+                // Pilihan warna yang lebih menarik
+                const colors = [
+                    'rgba(60, 64, 67, 0.5)', // Abu-abu Gelap
+                    'rgba(33, 150, 243, 0.5)', // Biru
+                    'rgba(76, 175, 80, 0.5)', // Hijau
+                    'rgba(255, 87, 34, 0.5)', // Oranye
+                    'rgba(255, 193, 7, 0.5)', // Kuning
+                    'rgba(103, 58, 183, 0.5)'  // Ungu
+                ];
+        
+                chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: years, // Tahun di sumbu X
+                        datasets: sectors.map((sector, index) => ({
+                            label: sector,
+                            data: years.map(year => {
+                                // Ambil data untuk sektor dan tahun tertentu
+                                return dataBySector[year][index] || 0;
+                            }),
+                            backgroundColor: colors[index % colors.length],
+                            borderColor: colors[index % colors.length].replace('0.5', '1'), // Warna border sesuai dengan background
+                            borderWidth: 1
+                        }))
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.y !== null) {
+                                            label += new Intl.NumberFormat().format(context.parsed.y);
+                                        }
+                                        return label;
+                                    }
+                                }
+                            },
+                            datalabels: {
+                                display: true, // Tampilkan data labels
+                                anchor: 'end',
+                                align: 'top',
+                                formatter: (value, context) => {
+                                    // Tampilkan total PDRB di atas grup batang
+                                    return context.dataIndex === context.dataset.data.length - 1 ? 
+                                        new Intl.NumberFormat().format(totalPDRB[context.dataIndex]) : '';
+                                },
+                                color: '#000',
+                                font: {
+                                    weight: 'bold'
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                stacked: true, // Aktifkan tumpukan pada sumbu X
+                                title: {
+                                    display: true,
+                                    text: 'Tahun'
+                                }
+                            },
+                            y: {
+                                stacked: true, // Aktifkan tumpukan pada sumbu Y
+                                title: {
+                                    display: true,
+                                    text: 'Jumlah Rupiah (Miliar)'
+                                },
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+        
+            generateEconomicGrowthChart();
+        
+            // Menggunakan MutationObserver untuk memantau perubahan pada tabel
+            const observer = new MutationObserver(() => {
+                generateEconomicGrowthChart();
+            });
+        
+            // Konfigurasi observer
+            const config = { childList: true, subtree: true };
+        
+            // Memulai observer
+            observer.observe(document.querySelector('#economic-growth-table tbody'), config);
+        });
+        
