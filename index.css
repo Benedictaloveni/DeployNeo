@@ -810,7 +810,7 @@ button:hover {
     #home .section-container {
         background-size: cover; /* Tetap menjaga gambar menutupi seluruh elemen */
         background-position: center center; /* Gambar tetap di tengah */
-        height: 90vh; /* Menyesuaikan tinggi elemen */
+        height: 70vh; /* Menyesuaikan tinggi elemen */
     }
 
     #input-section .section-container {
@@ -875,7 +875,7 @@ button:hover {
 
     /* Penyesuaian untuk peta */
     #map {
-        width: 90%; /* Menyesuaikan lebar peta untuk layar kecil */
+        width: 100%; /* Menyesuaikan lebar peta untuk layar kecil */
         height: 250px; /* Menyesuaikan tinggi peta */
         margin-left: -50px; /* Menggeser peta ke kiri untuk layar kecil */
         margin-right: 0;
@@ -885,8 +885,14 @@ button:hover {
     #calculation-description {
         background-color: #3d3d3d; /* Warna latar belakang kontainer */
         padding: 20px; /* Jarak di sekitar konten */
-        height: 1500px;
+        height: 1800px;
 }
+
+#proyeksi .section-container {
+    height:900px;
+    padding-top: 30px;
+}
+
 }
 
 /* Untuk layar dengan lebar maksimal 320px (Ponsel sangat kecil) */
@@ -894,7 +900,7 @@ button:hover {
     #home .section-container {
         background-size: cover; /* Tetap menjaga gambar menutupi seluruh elemen */
         background-position: center center; /* Gambar tetap di tengah */
-        height: 100vh; /* Menyesuaikan tinggi elemen */
+        height: 50vh; /* Menyesuaikan tinggi elemen */
     }
 
     #input-section .section-container {
@@ -938,7 +944,7 @@ button:hover {
 
     /* Penyesuaian untuk peta */
     #map {
-        width: 70%; /* Mengatur lebar peta agar sesuai dengan lebar layar */
+        width: 80%; /* Mengatur lebar peta agar sesuai dengan lebar layar */
         height: 200px; /* Menyesuaikan tinggi peta */
         margin-left: 0; /* Menghapus margin kiri untuk layar sangat kecil */
         margin-right: 0;
@@ -948,6 +954,11 @@ button:hover {
     #calculation-description {
         background-color: #3d3d3d; /* Warna latar belakang kontainer */
         padding: 20px; /* Jarak di sekitar konten */
-        height: 1600px;
+        height: 2000px;
+    }
+
+    #proyeksi .section-container {
+        height:1100px;
+        padding-top: 30px;
     }
 }
