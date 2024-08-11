@@ -112,7 +112,7 @@ function generateSectorInputs() {
     const inputDiv = document.createElement('div');
     inputDiv.innerHTML = `
         <label for="sector-name">Nama Sektor:</label>
-        <input type="text" id="sector-name">
+        <input type="text" id="sector-name" value="Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor">
     `;
     sectorFields.appendChild(inputDiv);
 
@@ -126,24 +126,24 @@ function generateYearInputs() {
 
     const years = [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023];
     const defaultValues = {
-        2013: 10000,
-        2014: 15000,
-        2015: 20000,
-        2016: 25000,
-        2017: 30000,
-        2018: 35000,
-        2019: 40000,
-        2020: 45000,
-        2021: 50000,
-        2022: 55000,
-        2023: 60000
+        2013: 605.76,
+        2014: 678.85,
+        2015: 767.18,
+        2016: 841.69,
+        2017: 915.18,
+        2018: 1056.49,
+        2019: 1204.11,
+        2020: 1297.16,
+        2021: 1394.25,
+        2022: 1522.75,
+        2023: 1668.84
     };
     
     years.forEach(year => {
         const inputDiv = document.createElement('div');
         inputDiv.innerHTML = `
             <label for="revenue-${year}">${year}:</label>
-            <input type="number" id="revenue-${year}" class="revenue-input" step="0.01">
+            <input type="number" id="revenue-${year}" class="revenue-input" step="0.01" value="${defaultValues[year]}">
         `;
         inputFields.appendChild(inputDiv);
     });
