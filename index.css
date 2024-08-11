@@ -161,7 +161,7 @@ html, body {
 
 #pertumbuhan .section-container {
     background-color: #ffffff;
-    top: 70px;
+    top: 90px;
     height: auto;
     padding-bottom: 90px;
 }
@@ -237,7 +237,7 @@ html, body {
 
 /* Gaya Umum untuk Semua Tabel */
 table {
-    width: 90%; /* Atur lebar tabel sesuai kebutuhan */
+    width: 95%; /* Atur lebar tabel sesuai kebutuhan */
     border-collapse: collapse; /* Menggabungkan border tabel */
     table-layout: fixed; /* Tetapkan lebar kolom tetap */
     margin: 20px auto; /* Jarak bawah tabel dan menjaga tabel di tengah halaman */
@@ -528,8 +528,20 @@ th, tfoot {
 
 /* Atur lebar kolom secara spesifik untuk Nama Sektor */
 .sektor-column {
-    width: 20%; /* Lebar 40% dari tabel, bisa disesuaikan */
+    width: 10%; /* Lebar 40% dari tabel, bisa disesuaikan */
 }
+
+#weighting-results-table .sektor-column {
+    width: 50%; /* Sesuaikan dengan kebutuhan */
+  }
+
+#economic-pull-table .sektor-column {
+    width: 50%; /* Sesuaikan dengan kebutuhan */
+  }
+
+#peningkatan-tarikan-ekonomi .sektor-column {
+    width: 50%; /* Sesuaikan dengan kebutuhan */
+  }
 
 /* Gaya umum untuk tombol */
 .action-btn.mulai, .action-btn.pelajari {
